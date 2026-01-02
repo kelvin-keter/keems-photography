@@ -7,7 +7,6 @@
     /* THE LUXURY GOLD PALETTE (Refined) */
     --gold-primary: #D4AF37; /* Classic Champagne Gold */
     --gold-muted: #aa8c2c;
-    /* Smoother, less "yellow" gradient */
     --gold-gradient: linear-gradient(135deg, #e3c466 0%, #D4AF37 50%, #aa8c2c 100%);
     
     /* --- NEW FONTS --- */
@@ -25,7 +24,7 @@ body {
     background-color: var(--bg-color); 
     color: var(--text-primary); 
     font-family: var(--font-body); 
-    font-weight: 300; /* Light weight is key for luxury */
+    font-weight: 300;
     line-height: 1.8;
     overflow-x: hidden;
     min-height: 100vh;
@@ -36,7 +35,7 @@ body {
 h1, h2, h3, h4 { 
     font-family: var(--font-head); 
     color: #fff;
-    font-weight: 400; /* Never bold */
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -46,9 +45,9 @@ a { text-decoration: none; color: inherit; }
 /* --- High-End Navigation --- */
 nav {
     padding: 25px 0;
-    background: rgba(5, 5, 5, 0.95); /* Slight transparency */
+    background: rgba(5, 5, 5, 0.95);
     border-bottom: 1px solid rgba(255,255,255,0.05);
-    position: sticky; /* Stays at top */
+    position: sticky;
     top: 0;
     z-index: 1000;
 }
@@ -70,11 +69,11 @@ nav {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 40px; /* More breathing room */
+    gap: 40px;
 }
 
 .nav-links a {
-    font-size: 0.75rem; /* Smaller text is more elegant */
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--text-primary);
@@ -133,7 +132,7 @@ nav {
 }
 
 .hero h1 {
-    font-size: 4.5rem; /* Large but thin */
+    font-size: 4.5rem;
     line-height: 1.1; 
     margin-bottom: 40px;
     text-shadow: 0 0 30px rgba(0,0,0,0.8);
@@ -172,13 +171,13 @@ nav {
     margin-bottom: 20px;
     position: relative;
     overflow: hidden;
-    border-radius: 0; /* Sharp edges are more premium */
+    border-radius: 0;
 }
 
 .portfolio-item img {
     width: 100%;
     display: block;
-    transition: transform 0.8s ease; /* Slower, smoother zoom */
+    transition: transform 0.8s ease;
 }
 
 .portfolio-item:hover img {
@@ -275,12 +274,6 @@ nav {
 .price .currency {
     font-size: 1.5rem;
     vertical-align: super;
-}
-
-.price .small-text {
-    font-size: 1rem;
-    color: #666;
-    vertical-align: middle;
 }
 
 /* Features List */
@@ -409,7 +402,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #888; /* Grey by default, not blue */
+    color: #888;
     transition: 0.3s;
     font-size: 1rem;
 }
@@ -458,11 +451,29 @@ footer {
     box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
 }
 
-/* --- MOBILE RESPONSIVENESS --- */
+/* =========================================
+   MOBILE RESPONSIVENESS (The Important Part)
+   ========================================= */
 @media (max-width: 768px) {
     
-    .hero h1 { font-size: 3rem; }
+    /* 1. General Mobile Tweaks */
+    .container { width: 90%; }
+    
+    section.container, 
+    .pricing-section { 
+        padding: 60px 0 !important; 
+    }
 
+    /* 2. Hero Text Resize */
+    .hero h1 { 
+        font-size: 2.8rem; 
+        line-height: 1.2;
+    }
+    .hero-subtitle {
+        font-size: 0.7rem;
+    }
+
+    /* 3. Navigation (Hamburger) */
     .hamburger { display: block; }
 
     .nav-links {
@@ -491,14 +502,50 @@ footer {
         animation: navLinkFade 0.5s ease forwards 0.3s;
     }
 
+    /* 4. Grids: FORCE Single Column Stack */
     .portfolio-grid { column-count: 1; }
 
-    .footer-grid {
-        text-align: center;
+    .service-grid, 
+    .pricing-grid {
+        grid-template-columns: 1fr;
         gap: 40px;
     }
+
+    /* 5. Experience Section: Fix side-by-side issue */
+    .experience-wrap {
+        flex-direction: column-reverse; 
+        gap: 40px !important; 
+    }
+
+    /* 6. Footer Layout - ROBUST FIX */
+    .footer-grid {
+        display: flex; /* Switch to Flex for vertical stacking */
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 60px; /* More space between the 3 columns */
+    }
     
+    .footer-col {
+        width: 100%;
+        padding: 0 20px; /* Prevent text touching screen edges */
+    }
+
+    /* Ensure links list is centered properly */
+    .links-col ul {
+        padding: 0;
+        list-style: none;
+    }
+    
+    .links-col ul li {
+        text-align: center;
+    }
+
     .social-links {
         justify-content: center;
+        margin-top: 10px;
     }
+
+    /* Fix Alignment for Pricing list */
+    .features-list { margin-left: 0; display: inline-block; text-align: left; }
 }
