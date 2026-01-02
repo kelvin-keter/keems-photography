@@ -10,81 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
-    <style>
-        /* --- MOBILE MENU STYLES (Added directly here for quick fix) --- */
-        
-        /* By default, the hamburger icon is hidden on desktop */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.8rem;
-            color: var(--gold-primary);
-        }
-
-        /* Mobile adjustments */
-        @media (max-width: 768px) {
-            /* Show the hamburger icon */
-            .hamburger {
-                display: block;
-                position: absolute;
-                right: 20px;
-                top: 25px; /* Adjust alignment with logo */
-                z-index: 1001;
-            }
-
-            /* Hide the regular nav links initially */
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%; /* Slide out of view */
-                height: 100vh;
-                width: 70%;
-                background-color: #000;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: right 0.4s ease-in-out;
-                z-index: 1000;
-                border-left: 2px solid var(--gold-primary);
-                box-shadow: -5px 0 15px rgba(0,0,0,0.8);
-            }
-
-            /* The class that JavaScript adds to show the menu */
-            .nav-links.active {
-                right: 0; 
-            }
-
-            /* Style links inside the mobile menu */
-            .nav-links a {
-                margin: 20px 0;
-                font-size: 1.2rem;
-                opacity: 0; /* Fade in effect */
-                animation: navLinkFade 0.5s ease forwards 0.3s;
-            }
-
-            /* The "Book Session" button in mobile menu */
-            .nav-links .btn-nav {
-                margin-top: 20px;
-                width: 80%;
-                text-align: center;
-            }
-        }
-
-        /* Animation for links fading in */
-        @keyframes navLinkFade {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-    </style>
 </head>
 <body>
 
-    <nav style="padding: 20px 0; background: #000; border-bottom: 1px solid #1a1a1a; position: relative;">
+    <nav>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
             
-            <a href="{{ url_for('home') }}" class="logo" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <a href="{{ url_for('home') }}" class="logo">
                 <div style="width: 50px; height: 50px; border: 2px solid var(--gold-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                     <span style="font-family: 'Playfair Display'; font-weight: 700; color: var(--gold-primary); font-size: 0.9rem;">Keems</span>
                 </div>
@@ -106,19 +38,41 @@
 
     {% block content %}{% endblock %}
 
-    <footer style="background: #000; padding: 60px 0; text-align: center; border-top: 1px solid #1a1a1a; margin-top: auto;">
-        <div class="container">
-            <h2 style="font-family: 'Playfair Display'; color: #fff; margin-bottom: 20px; letter-spacing: 2px;">KEEMS.</h2>
-            <p style="color: #888; font-style: italic; margin-bottom: 10px;">Passion is Priceless.</p>
-            <p style="color: var(--gold-primary); font-style: italic; font-weight: 700; margin-bottom: 40px;">God is in control.</p>
+    <footer style="background: #000; padding: 80px 0 30px; border-top: 1px solid #1a1a1a; margin-top: auto;">
+        <div class="container footer-grid">
             
-            <div class="social-links" style="margin-bottom: 40px;">
-                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <div class="footer-col brand-col">
+                <h2 style="font-family: 'Playfair Display', serif; color: #fff; letter-spacing: 2px; margin-bottom: 20px;">KEEMS.</h2>
+                <p style="color: #888; font-style: italic; margin-bottom: 10px;">Passion is Priceless.</p>
+                <p style="color: var(--gold-primary); font-weight: 700; font-size: 0.9rem;">God is in control.</p>
             </div>
 
+            <div class="footer-col links-col">
+                <h4 style="color: #fff; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Explore</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">The Passion</a></li>
+                    <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
+                    <li><a href="{{ url_for('contact') }}">Book Session</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-col">
+                <h4 style="color: #fff; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Connect</h4>
+                <p style="color: #888; margin-bottom: 5px;">Eldoret, Kenya</p>
+                <p style="color: #888; margin-bottom: 20px;">+254 718 152834</p>
+                
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="border-top: 1px solid #111; margin-top: 60px; padding-top: 30px; text-align: center;">
             <p style="color: #444; font-size: 0.8rem;">&copy; 2026 Keems Photography. Luxury Visuals in Eldoret.</p>
         </div>
     </footer>
@@ -128,10 +82,8 @@
             const nav = document.getElementById('navLinks');
             const icon = document.querySelector('.hamburger i');
             
-            // Toggle the 'active' class to show/hide menu
             nav.classList.toggle('active');
             
-            // Switch icon between 'Bars' (Menu) and 'X' (Close)
             if (nav.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
