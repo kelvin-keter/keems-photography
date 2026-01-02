@@ -27,10 +27,9 @@
 
         <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
             
-            <div class="gallery-item" data-category="weddings">
-                <div style="position: relative; overflow: hidden; border-radius: 2px;">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop" 
-                         style="width: 100%; height: 500px; object-fit: cover; display: block;">
+            <div class="gallery-item" data-category="weddings" onclick="openLightbox(this)">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop" loading="lazy">
                     <div class="hover-overlay">
                         <p class="overlay-cat">WEDDING</p>
                         <h3 class="overlay-title">The Union</h3>
@@ -38,10 +37,9 @@
                 </div>
             </div>
 
-            <div class="gallery-item" data-category="portraits">
-                <div style="position: relative; overflow: hidden; border-radius: 2px;">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" 
-                         style="width: 100%; height: 500px; object-fit: cover; display: block;">
+            <div class="gallery-item" data-category="portraits" onclick="openLightbox(this)">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" loading="lazy">
                     <div class="hover-overlay">
                         <p class="overlay-cat">PORTRAIT</p>
                         <h3 class="overlay-title">Golden Hour</h3>
@@ -49,10 +47,9 @@
                 </div>
             </div>
 
-            <div class="gallery-item" data-category="commercial">
-                <div style="position: relative; overflow: hidden; border-radius: 2px;">
-                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=800&auto=format&fit=crop" 
-                         style="width: 100%; height: 500px; object-fit: cover; display: block;">
+            <div class="gallery-item" data-category="commercial" onclick="openLightbox(this)">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=800&auto=format&fit=crop" loading="lazy">
                     <div class="hover-overlay">
                         <p class="overlay-cat">FASHION</p>
                         <h3 class="overlay-title">Editorial</h3>
@@ -60,10 +57,9 @@
                 </div>
             </div>
 
-            <div class="gallery-item" data-category="weddings">
-                <div style="position: relative; overflow: hidden; border-radius: 2px;">
-                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=800&auto=format&fit=crop" 
-                         style="width: 100%; height: 500px; object-fit: cover; display: block;">
+            <div class="gallery-item" data-category="weddings" onclick="openLightbox(this)">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=800&auto=format&fit=crop" loading="lazy">
                     <div class="hover-overlay">
                         <p class="overlay-cat">FAMILY</p>
                         <h3 class="overlay-title">New Beginnings</h3>
@@ -71,10 +67,9 @@
                 </div>
             </div>
 
-             <div class="gallery-item" data-category="events">
-                <div style="position: relative; overflow: hidden; border-radius: 2px;">
-                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800&auto=format&fit=crop" 
-                         style="width: 100%; height: 500px; object-fit: cover; display: block;">
+             <div class="gallery-item" data-category="events" onclick="openLightbox(this)">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800&auto=format&fit=crop" loading="lazy">
                     <div class="hover-overlay">
                         <p class="overlay-cat">EVENTS</p>
                         <h3 class="overlay-title">Celebration</h3>
@@ -82,10 +77,9 @@
                 </div>
             </div>
 
-             <div class="gallery-item" data-category="commercial">
-                <div style="position: relative; overflow: hidden; border-radius: 2px;">
-                    <img src="https://images.unsplash.com/photo-1470058869958-2a77ade41c02?q=80&w=800&auto=format&fit=crop" 
-                         style="width: 100%; height: 500px; object-fit: cover; display: block;">
+             <div class="gallery-item" data-category="commercial" onclick="openLightbox(this)">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1470058869958-2a77ade41c02?q=80&w=800&auto=format&fit=crop" loading="lazy">
                     <div class="hover-overlay">
                         <p class="overlay-cat">CREATIVE</p>
                         <h3 class="overlay-title">Wilderness</h3>
@@ -104,8 +98,16 @@
     </div>
 </section>
 
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <span class="close-btn">&times;</span>
+    <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="">
+        <h3 id="lightbox-caption"></h3>
+    </div>
+</div>
+
 <style>
-    /* Filter Button Styles */
+    /* --- Filter Button Styles --- */
     .filter-btn {
         color: #666; 
         cursor: pointer; 
@@ -116,40 +118,54 @@
         letter-spacing: 1px;
     }
     
-    .filter-btn:hover {
-        color: #fff;
-    }
+    .filter-btn:hover { color: #fff; }
 
     /* The Active State (Gold Underline) */
-    .filter-btn.active {
-        color: var(--gold-primary);
-    }
+    .filter-btn.active { color: var(--gold-primary); }
     .filter-btn.active::after {
         content: '';
         position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
+        bottom: 0; left: 0; width: 100%; height: 1px;
         background: var(--gold-primary);
+    }
+
+    /* --- Gallery Item Styles --- */
+    .gallery-item {
+        cursor: pointer;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .img-wrapper {
+        position: relative; 
+        overflow: hidden; 
+        border-radius: 2px;
+        height: 500px;
+    }
+
+    .gallery-item img {
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        display: block;
+        transition: transform 0.6s ease;
+    }
+
+    /* Zoom Effect on Hover */
+    .gallery-item:hover img {
+        transform: scale(1.1);
     }
 
     /* Hover Overlay Styles */
     .hover-overlay {
         position: absolute; 
-        bottom: 0; 
-        left: 0; 
-        width: 100%; 
+        bottom: 0; left: 0; width: 100%; 
         padding: 30px; 
         background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
         opacity: 0;
         transition: opacity 0.4s ease;
     }
 
-    /* Show overlay on hover */
-    .gallery-item:hover .hover-overlay {
-        opacity: 1;
-    }
+    .gallery-item:hover .hover-overlay { opacity: 1; }
     
     .overlay-cat {
         color: var(--gold-primary); 
@@ -164,11 +180,53 @@
         font-family: var(--font-head);
     }
     
-    /* Animation for filtering */
-    .gallery-item {
-        animation: fadeIn 0.5s ease;
+    /* --- LIGHTBOX STYLES --- */
+    .lightbox {
+        display: none; /* Hidden by default */
+        position: fixed; 
+        z-index: 3000; /* Above everything */
+        left: 0; top: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0,0,0,0.95);
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(5px);
+        animation: fadeIn 0.3s ease;
     }
-    
+
+    .lightbox-content {
+        text-align: center;
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .lightbox-content img {
+        max-width: 100%;
+        max-height: 80vh;
+        border: 2px solid #222;
+        box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    }
+
+    .lightbox-content h3 {
+        color: var(--gold-primary);
+        font-family: var(--font-head);
+        margin-top: 20px;
+        font-size: 1.5rem;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .close-btn:hover { color: var(--gold-primary); }
+
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
@@ -176,6 +234,7 @@
 </style>
 
 <script>
+    // --- FILTER FUNCTION ---
     function filterGallery(category, btnElement) {
         // 1. Remove 'active' class from all buttons
         let buttons = document.querySelectorAll('.filter-btn');
@@ -188,11 +247,8 @@
         let items = document.querySelectorAll('.gallery-item');
 
         items.forEach(item => {
-            // If category is 'all' OR the item matches the category
             if (category === 'all' || item.getAttribute('data-category') === category) {
                 item.style.display = 'block';
-                
-                // Trigger a small animation reset to make it look smooth
                 item.style.animation = 'none';
                 item.offsetHeight; /* trigger reflow */
                 item.style.animation = 'fadeIn 0.5s ease';
@@ -200,6 +256,32 @@
                 item.style.display = 'none';
             }
         });
+    }
+
+    // --- LIGHTBOX FUNCTIONS ---
+    function openLightbox(element) {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        
+        // Get the image source from the clicked item
+        const img = element.querySelector('img');
+        const title = element.querySelector('.overlay-title').innerText;
+
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+        lightboxCaption.innerText = title;
+        
+        // Prevent body scrolling when modal is open
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(event) {
+        // Close if clicking the Close Button (x) OR the background (not the image itself)
+        if (event.target.id === 'lightbox' || event.target.classList.contains('close-btn')) {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
     }
 </script>
 
