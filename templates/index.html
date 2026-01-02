@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-subtitle" style="display: block; color: var(--gold-primary); letter-spacing: 4px; font-size: 0.9rem; margin-bottom: 20px; text-transform: uppercase; font-weight: 600;">
+            Est. 2020 • Eldoret City
+        </span>
+        
+        <h1>
+            Passion is <br> 
+            <span style="font-style: italic; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Priceless.</span>
+        </h1>
+        
+        <p style="font-size: 1.3rem; margin-bottom: 40px; color: #ddd; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6; font-weight: 300;">
+            We don't just take pictures; we direct moments. <br>
+            <strong>Keems Photography</strong> brings a cinematic, high-fashion aesthetic to your most important days.
+        </p>
+        
+        <a href="{{ url_for('contact') }}" class="btn-primary">Book Your Session</a>
+    </div>
+</section>
+
+<section class="container" style="padding: 100px 0; text-align: center;">
+    <div class="section-head">
+        <h2 style="font-size: 3rem; margin-bottom: 15px;">We Capture Life.</h2>
+        <div class="gold-line"></div>
+    </div>
+    
+    <p style="max-width: 800px; margin: auto; font-size: 1.15rem; color: var(--text-muted); line-height: 1.8;">
+        At <strong>Keems Photography</strong>, we believe every shutter click is a blessing. 
+        Whether it's the raw emotion of a wedding day or the quiet beauty of a newborn, 
+        we bring an international standard of excellence to Eldoret.
+    </p>
+</section>
+
+<section class="services">
+    <div class="container">
+        <div class="section-head">
+            <p style="color: var(--gold-primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">What We Do</p>
+            <h2>Our Collections</h2>
+            <div class="gold-line" style="width: 40px; margin-top: 15px;"></div>
+        </div>
+
+        <div class="service-grid">
+            <div class="service-card">
+                <i class="fa-solid fa-baby-carriage"></i>
+                <h3>Newborn & Baby</h3>
+                <p>Gentle, patient, and creative. We create safe, warm environments to capture the innocence of your little ones.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fa-solid fa-camera-retro"></i>
+                <h3>Nature & Portraits</h3>
+                <p>For the nature lovers. We take you outdoors to create stunning, vibrant portraits against beautiful backdrops.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fa-solid fa-rings-wedding"></i>
+                <h3>Weddings & Events</h3>
+                <p>We document your big day with a mix of candid emotion and editorial style posing. Memories that last forever.</p>
+            </div>
+            
+            <div class="service-card">
+                <i class="fa-solid fa-briefcase"></i>
+                <h3>Commercial & Brand</h3>
+                <p>Elevate your business. High-end product photography and executive headshots that command respect.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container" style="padding: 100px 0;">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 60px;">
+        <div style="flex: 1; min-width: 300px;">
+            <div style="margin-bottom: 30px;">
+                <h2 style="font-size: 2.5rem;">The Keems Experience</h2>
+                <div style="width: 50px; height: 3px; background: var(--gold-primary); margin-top: 10px;"></div>
+            </div>
+            
+            <p style="margin-bottom: 40px; font-size: 1.1rem; color: #ccc;">
+                We know being in front of a camera can feel awkward. That's why our process is designed to make you feel like a star.
+            </p>
+            
+            <div style="margin-bottom: 25px;">
+                <h3 style="color: var(--gold-primary); font-size: 1.3rem; margin-bottom: 5px;">01. The Vision</h3>
+                <p style="font-size: 0.95rem; color: #aaa;">We discuss your outfits, the location, and the "vibe" before we ever pick up a camera.</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <h3 style="color: var(--gold-primary); font-size: 1.3rem; margin-bottom: 5px;">02. The Shoot</h3>
+                <p style="font-size: 0.95rem; color: #aaa;">Good music. Great lighting. Zero awkward poses. We direct you every step of the way.</p>
+            </div>
+            
+            <div style="margin-bottom: 35px;">
+                <h3 style="color: var(--gold-primary); font-size: 1.3rem; margin-bottom: 5px;">03. The Edit</h3>
+                <p style="font-size: 0.95rem; color: #aaa;">We retouch your photos to magazine quality—removing blemishes while keeping you looking like <em>you</em>.</p>
+            </div>
+            
+            <a href="{{ url_for('portfolio') }}" style="border-bottom: 1px solid var(--gold-primary); padding-bottom: 5px; color: #fff; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">View Recent Work &rarr;</a>
+        </div>
+
+        <div style="flex: 1; min-width: 300px;">
+            <div style="position: relative; padding: 20px;">
+                <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; border-top: 3px solid var(--gold-primary); border-right: 3px solid var(--gold-primary);"></div>
+                
+                <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop" 
+                     alt="Keems Photography Behind the Scenes" 
+                     style="border-radius: 2px; opacity: 0.9; width: 100%; display: block;">
+                
+                <div style="position: absolute; bottom: 0; left: 0; width: 100px; height: 100px; border-bottom: 3px solid var(--gold-primary); border-left: 3px solid var(--gold-primary);"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background: linear-gradient(to right, #0a0a0a, #000); padding: 100px 0; border-top: 1px solid #222; text-align: center;">
+    <div class="container">
+        <h2 style="color: #fff; margin-bottom: 30px;">Ready to tell your story?</h2>
+        <a href="{{ url_for('contact') }}" class="btn-primary">Get A Quote</a>
+    </div>
+</section>
+{% endblock %}
