@@ -3,65 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keems Photography | Luxury & Elegance</title>
+    <title>{{ title }} | Keems Photography</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- MOBILE MENU STYLES (Added directly here for quick fix) --- */
+        
+        /* By default, the hamburger icon is hidden on desktop */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            /* Show the hamburger icon */
+            .hamburger {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 25px; /* Adjust alignment with logo */
+                z-index: 1001;
+            }
+
+            /* Hide the regular nav links initially */
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%; /* Slide out of view */
+                height: 100vh;
+                width: 70%;
+                background-color: #000;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.4s ease-in-out;
+                z-index: 1000;
+                border-left: 2px solid var(--gold-primary);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.8);
+            }
+
+            /* The class that JavaScript adds to show the menu */
+            .nav-links.active {
+                right: 0; 
+            }
+
+            /* Style links inside the mobile menu */
+            .nav-links a {
+                margin: 20px 0;
+                font-size: 1.2rem;
+                opacity: 0; /* Fade in effect */
+                animation: navLinkFade 0.5s ease forwards 0.3s;
+            }
+
+            /* The "Book Session" button in mobile menu */
+            .nav-links .btn-nav {
+                margin-top: 20px;
+                width: 80%;
+                text-align: center;
+            }
+        }
+
+        /* Animation for links fading in */
+        @keyframes navLinkFade {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
 </head>
 <body>
 
-    <header class="glass-header">
-        <div class="container nav-container">
-            <a href="{{ url_for('home') }}" class="logo-wrapper">
-                <img src="{{ url_for('static', filename='logo.png') }}" alt="Keems Photography" class="nav-logo">
+    <nav style="padding: 20px 0; background: #000; border-bottom: 1px solid #1a1a1a; position: relative;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            
+            <a href="{{ url_for('home') }}" class="logo" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+                <div style="width: 50px; height: 50px; border: 2px solid var(--gold-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <span style="font-family: 'Playfair Display'; font-weight: 700; color: var(--gold-primary); font-size: 0.9rem;">Keems</span>
+                </div>
             </a>
 
-            <nav>
-                <a href="{{ url_for('home') }}">Home</a>
-                <a href="{{ url_for('about') }}">The Passion</a>
-                <a href="{{ url_for('portfolio') }}">Portfolio</a>
-                <a href="{{ url_for('contact') }}" class="nav-cta">Book Session</a>
-            </nav>
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <div class="nav-links" id="navLinks">
+                <a href="{{ url_for('home') }}" class="{{ 'active' if title == 'Home' else '' }}">Home</a>
+                <a href="{{ url_for('about') }}" class="{{ 'active' if title == 'Passion' else '' }}">The Passion</a>
+                <a href="{{ url_for('portfolio') }}" class="{{ 'active' if title == 'Gallery' else '' }}">Portfolio</a>
+                <a href="{{ url_for('contact') }}" class="btn-nav">Book Session</a>
+            </div>
+
         </div>
-    </header>
+    </nav>
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+    {% block content %}{% endblock %}
 
-    <footer style="background: #050505; padding: 50px 0 25px; border-top: 1px solid #1a1a1a; position: relative;">
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--gold-gradient);"></div>
-
-        <div class="container footer-content" style="text-align: center;">
+    <footer style="background: #000; padding: 60px 0; text-align: center; border-top: 1px solid #1a1a1a; margin-top: auto;">
+        <div class="container">
+            <h2 style="font-family: 'Playfair Display'; color: #fff; margin-bottom: 20px; letter-spacing: 2px;">KEEMS.</h2>
+            <p style="color: #888; font-style: italic; margin-bottom: 10px;">Passion is Priceless.</p>
+            <p style="color: var(--gold-primary); font-style: italic; font-weight: 700; margin-bottom: 40px;">God is in control.</p>
             
-            <div class="footer-brand" style="margin-bottom: 25px;">
-                <h3 style="font-family: var(--font-head); font-size: 2rem; letter-spacing: 3px; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0 0 10px 0; display: inline-block;">
-                    KEEMS.
-                </h3>
-                
-                <p style="color: #999; font-size: 1rem; font-weight: 300; letter-spacing: 0.5px; margin: 0; line-height: 1.5;">
-                    Passion is Priceless. <span style="color: var(--gold-primary); font-style: italic; margin-left: 5px;">God is in control.</span>
-                </p>
-            </div>
-            
-            <div class="footer-socials" style="margin-bottom: 25px; display: flex; justify-content: center; gap: 25px;">
-                <a href="https://www.tiktok.com/@keemsphotography" target="_blank" style="color: #fff; font-size: 1.1rem; opacity: 0.8; transition: 0.3s;"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://www.youtube.com/@keems_photography_ke" target="_blank" style="color: #fff; font-size: 1.1rem; opacity: 0.8; transition: 0.3s;"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://www.instagram.com/keems_photography_ke/" target="_blank" style="color: #fff; font-size: 1.1rem; opacity: 0.8; transition: 0.3s;"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://web.facebook.com/Keemsphotographyeldoret" target="_blank" style="color: #fff; font-size: 1.1rem; opacity: 0.8; transition: 0.3s;"><i class="fa-brands fa-facebook-f"></i></a>
+            <div class="social-links" style="margin-bottom: 40px;">
+                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
             </div>
 
-            <div style="width: 30px; height: 1px; background: #333; margin: 0 auto 20px;"></div>
-            
-            <div class="copyright" style="color: #555; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;">
-                &copy; 2026 Keems Photography. Luxury Visuals in Eldoret.
-            </div>
+            <p style="color: #444; font-size: 0.8rem;">&copy; 2026 Keems Photography. Luxury Visuals in Eldoret.</p>
         </div>
     </footer>
 
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            const icon = document.querySelector('.hamburger i');
+            
+            // Toggle the 'active' class to show/hide menu
+            nav.classList.toggle('active');
+            
+            // Switch icon between 'Bars' (Menu) and 'X' (Close)
+            if (nav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+    </script>
 </body>
 </html>
